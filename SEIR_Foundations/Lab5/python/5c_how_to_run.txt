@@ -1,0 +1,16 @@
+Tokyo
+
+python3 merge_reports.py --mode tokyo --llm ollama --model llama3.1 --chunk-size 120
+
+NY
+
+python3 merge_reports.py --mode ny --llm ollama --model llama3.1 --chunk-size 120
+
+Both: Be a man!
+
+python3 merge_reports.py --mode both --llm ollama --model llama3.1 --chunk-size 120
+
+Outputs per mode:
+    outputs/<mode>/extracted_findings.json
+    outputs/<mode>/duplicate_map.json
+    outputs/<mode>/consolidated_security_report.md
