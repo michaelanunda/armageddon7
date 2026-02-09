@@ -1,0 +1,12 @@
+REGION=us-east-1 \
+LAMBDA_NAME=chewbacca-intake-lambda-11a \
+API_ID=abc123xyz \
+STAGE_NAME=prod \
+DB_ID=chewbacca-mysql-11a \
+RDS_SG_ID=sg-xxxx \
+LAMBDA_SG_ID=sg-yyyy \
+SECRET_ARN=arn:aws:secretsmanager:... \
+AUTO_BREAK=false \
+AUTO_RESTORE=false \
+INCIDENT_MODE=sg_block_db \
+./gate_11b_incident.sh
