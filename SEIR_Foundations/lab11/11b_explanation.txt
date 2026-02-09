@@ -1,0 +1,195 @@
+SEIR-I Lab 11B — Incident Response (Lambda + API Gateway + RDS)
+
+“The system doesn’t need heroes.
+It needs adults.”
+
+What this lab is
+
+Lab 11B simulates a real production incident in a serverless system:
+
+Client → API Gateway → Lambda → RDS
+
+Something breaks.
+Not “the whole system.”
+One small thing.
+
+Your job is not to panic, redeploy everything, or guess.
+
+Your job is to:
+    1. Prove the failure
+    2. Collect evidence
+    3. Identify the root cause
+    4. Recover the system
+    5. Prove recovery
+    6. Document what happened
+
+That’s it.
+
+This lab does not test how fast you type.
+It tests whether you can think clearly under pressure.
+
+Why we are doing this
+
+Most outages are not caused by “bad code.”
+
+They are caused by:
+    a missing security-group rule
+    a rotated secret
+    a wrong environment variable
+    a VPC attachment mistake
+
+In serverless systems, you cannot SSH in and poke around.
+So your only tools are:
+    logs
+    configuration
+    evidence
+    discipline
+
+This lab trains the exact mindset used by:
+    Cloud engineers on call
+    Incident commanders
+    Audit-facing platform teams
+    Regulated environments (healthcare, finance, gov)
+
+What “passing” actually means
+You do not pass by fixing the issue alone.
+You pass only if you can prove, with evidence:
+    the system was healthy
+    the system failed
+    why it failed
+    what you changed
+    that it is healthy again
+
+That is what separates:
+
+“I fixed it”
+from
+“I can defend this in front of auditors”
+
+Required: evidence_manifest.json
+
+    Every Lab 11B submission must include an evidence manifest.
+    
+    This is non-negotiable.
+    
+    Purpose
+    
+    The manifest proves:
+        what evidence exists
+        when it was collected
+        that it was not altered
+    
+    This is how audits, SOC reports, and post-incident reviews work in real companies.
+
+Required location
+
+    evidence_11b/evidence_manifest.json
+
+Required structure
+
+{
+  "schema_version": "1.0",
+  "lab": "SEIR-I Lab 11B",
+  "generated_utc": "2026-01-02T03:14:15Z",
+  "student": {
+    "name": "",
+    "email": "",
+    "class": "SEIR-I"
+  },
+  "incident": {
+    "type": "Lambda-RDS connectivity failure",
+    "injected_by": "security_group | secret | unknown",
+    "initial_symptom": "API returned non-200"
+  },
+  "evidence_files": [
+    {
+      "file": "invoke_baseline.json",
+      "sha256": "REPLACE_ME"
+    },
+    {
+      "file": "invoke_failure.json",
+      "sha256": "REPLACE_ME"
+    },
+    {
+      "file": "invoke_recovery.json",
+      "sha256": "REPLACE_ME"
+    },
+    {
+      "file": "logs_tail.out",
+      "sha256": "REPLACE_ME"
+    },
+    {
+      "file": "sg_before_revoke_3306.out",
+      "sha256": "REPLACE_ME"
+    },
+    {
+      "file": "sg_after_restore.out",
+      "sha256": "REPLACE_ME"
+    }
+  ]
+}
+
+
+YOU must compute hashes yourself:
+
+sha256sum evidence_11b/* > evidence_11b/hashes.txt
+
+Then copy the correct values into the manifest.
+
+Why this matters:
+Auditors assume logs can lie.
+Hashes don’t.
+
+Required: Human Notes (No Automation Allowed)
+
+    Automation proves what happened.
+    Humans must explain why.
+    
+    Every student must submit a short written file:
+
+      human_notes_11b.md
+
+
+Required template
+
+# SEIR-I Lab 11B — Human Incident Notes
+
+## 1. What was the initial symptom?
+(What did the user/system experience?)
+
+## 2. What evidence showed the system was failing?
+(List specific files, logs, HTTP codes, timestamps.)
+
+## 3. What was the root cause?
+(Be precise. One sentence.)
+
+## 4. What change fixed the issue?
+(Exactly what was modified.)
+
+## 5. How did you verify recovery?
+(What evidence proves it is working again?)
+
+## 6. What would you monitor next time to catch this faster?
+(Logs, metrics, alarms.)
+
+No bullet-point fluff.
+No guessing.
+No blame.
+
+Just facts.
+
+Why this matters for your career
+
+At 2 a.m., nobody cares:
+    what tutorial you followed
+    what cert you memorized
+
+They care whether you can:
+    stay calm
+    collect evidence
+    fix one thing
+    explain it clearly
+
+Lab 11B teaches that muscle.
+
+
